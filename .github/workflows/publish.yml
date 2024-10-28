@@ -29,3 +29,9 @@ jobs:
         context: .
         push: true
         tags: pwncollege/challenge-legacy:latest
+
+    - name: Inspect Docker image
+      run: |
+        docker inspect pwncollege/challenge-legacy:latest
+        docker image history pwncollege/challenge-legacy:latest
+        docker image ls pwncollege/challenge-legacy:latest
