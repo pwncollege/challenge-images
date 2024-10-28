@@ -248,8 +248,6 @@ EOF
 
 ################################################################################
 
-# various tools
-
 RUN <<EOF
     git clone --depth 1 https://github.com/the-tcpdump-group/tcpdump /opt/tcpdump
     cd /opt/tcpdump
@@ -266,38 +264,7 @@ RUN <<EOF
 EOF
 
 RUN <<EOF
-    git clone --depth 1 https://github.com/radareorg/radare2 /opt/radare2
-    cd /opt/radare2
-    sys/install.sh
-EOF
-
-RUN <<EOF
-    git clone --depth 1 https://github.com/aflplusplus/aflplusplus /opt/aflplusplus
-    cd /opt/aflplusplus
-    make distrib
-    make install
-EOF
-
-RUN <<EOF
-    git clone --depth 1 https://github.com/yrp604/rappel /opt/rappel
-    cd /opt/rappel
-    make
-    cp bin/rappel /usr/bin/rappel
-EOF
-
-RUN <<EOF
-    wget https://github.com/0vercl0k/rp/releases/download/v2.0.2/rp-lin-x64 -O /usr/bin/rp++
-    chmod +x /usr/bin/rp++
-EOF
-
-RUN <<EOF
     wget -q -O - https://github.com/mozilla/geckodriver/releases/download/v0.35.0/geckodriver-v0.35.0-linux64.tar.gz | tar xvz -C /usr/local/bin
-EOF
-
-RUN <<EOF
-    wget -q -O /tmp/burpsuite.sh https://portswigger.net/burp/releases/download?product=community\&version=2023.11.1.4\&type=Linux
-    sh /tmp/burpsuite.sh -q
-    rm /tmp/burpsuite.sh
 EOF
 
 RUN <<EOF
@@ -337,18 +304,6 @@ EOF
 COPY desktop/angr-management.desktop /usr/share/applications/
 RUN <<EOF
     wget -q -O - https://github.com/angr/angr-management/releases/download/nightly/angr-management-ubuntu-20.04.tar.gz | tar xvz -C /opt
-EOF
-
-################################################################################
-
-# ghidra
-
-COPY desktop/Ghidra.desktop /usr/share/applications/
-RUN <<EOF
-    wget -q -O /tmp/ghidra.zip https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_10.3_build/ghidra_10.3_PUBLIC_20230510.zip
-    unzip /tmp/ghidra.zip -d /tmp
-    mv /tmp/ghidra_10.3_PUBLIC /opt/ghidra
-    rm /tmp/ghidra.zip
 EOF
 
 ################################################################################
