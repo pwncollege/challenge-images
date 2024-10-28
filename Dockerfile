@@ -22,65 +22,32 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update && xargs apt-get install --no-install-recommends -yqq <<EOF && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
-        apache2
-        arping
-        autoconf
-        bash-builtins
-        bat
-        bc
-        binutils
-        binutils-aarch64-linux-gnu
-        binwalk
-        bison
-        bsdmainutils
-        bsdutils
         build-essential
         ca-certificates
+        curl
+        python-is-python3
+        sudo
+        wget
+        unzip
+EOF
+
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && xargs apt-get install --no-install-recommends -yqq <<EOF && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+        autoconf
+        bc
+        bison
         cargo
         clang
         cmake
         cpio
-        curl
-        debianutils
-        diffutils
-        dwarves
-        ed
-        elfutils
-        emacs
-        ethtool
-        exiftool
-        expect
-        findutils
-        finger
-        firefox
-        fish
+        openjdk-17-jdk
         flex
-        fortune
-        fortunes
+        dwarves
         g++-multilib
-        gcc-aarch64-linux-gnu
         gcc-multilib
-        gdb
-        gdb-multiarch
-        gedit
-        genisoimage
         git
-        gnupg-utils
-        gprolog
-        hexedit
-        icdiff
-        iproute2
-        iptables
-        iputils-ping
-        ipython3
-        john
-        jq
-        keyutils
-        kmod
-        less
-        libapache2-mod-php
-        libc6-arm64-cross
-        libc6-dev-arm64-cross
         libc6-dev-i386
         libc6:i386
         libedit-dev
@@ -97,17 +64,72 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         libstdc++6:i386
         libtool-bin
         llvm
-        ltrace
         man-db
         manpages-dev
+        nasm
+        python-is-python3
+        python3-dev
+        python3-pip
+        rubygems
+        squashfs-tools
+        upx-ucl
+EOF
+
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && xargs apt-get install --no-install-recommends -yqq <<EOF && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+        apache2
+        arping
+        bash-builtins
+        bat
+        binutils
+        binutils-aarch64-linux-gnu
+        binwalk
+        bsdmainutils
+        bsdutils
+        debianutils
+        diffutils
+        ed
+        elfutils
+        emacs
+        ethtool
+        exiftool
+        expect
+        findutils
+        finger
+        firefox
+        fish
+        fortune
+        fortunes
+        gcc-aarch64-linux-gnu
+        gdb
+        gdb-multiarch
+        gedit
+        genisoimage
+        gnupg-utils
+        gprolog
+        hexedit
+        icdiff
+        iproute2
+        iptables
+        iputils-ping
+        ipython3
+        john
+        jq
+        keyutils
+        kmod
+        less
+        libapache2-mod-php
+        libc6-arm64-cross
+        libc6-dev-arm64-cross
+        ltrace
         mysql-server
         nano
-        nasm
         neovim
         net-tools
         netcat-openbsd
         nmap
-        openjdk-17-jdk
         openssh-server
         p7zip-full
         parallel
@@ -117,32 +139,23 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         php-cgi
         php-mysql
         psutils
-        python-is-python3
-        python3-dev
         python3-ipdb
         python3-magic
-        python3-pip
+        sagemath
         qemu-system-x86
         qemu-user
         qemu-utils
         racket
         rsync
-        rubygems
-        sagemath
         screen
         silversearcher-ag
         socat
         sqlite3
-        squashfs-tools
         strace
-        sudo
         tmux
-        unzip
-        upx-ucl
         valgrind
         vim
         wamerican
-        wget
         whiptail
         wireshark
         zip
