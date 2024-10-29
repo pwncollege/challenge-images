@@ -399,3 +399,6 @@ RUN <<EOF
 
     date > /opt/pwn.college/build
 EOF
+
+USER hacker
+WORKDIR /home/hacker
