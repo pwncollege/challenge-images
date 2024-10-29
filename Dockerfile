@@ -262,6 +262,7 @@ RUN <<EOF
     git checkout 0a67596
     make
     make install
+    rm -rf /opt/capstone
 EOF
 
 RUN <<EOF
@@ -398,6 +399,3 @@ RUN <<EOF
 
     date > /opt/pwn.college/build
 EOF
-
-USER hacker
-WORKDIR /home/hacker
