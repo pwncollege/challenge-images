@@ -257,8 +257,9 @@ RUN <<EOF
 EOF
 
 RUN <<EOF
-    git clone --branch 5.0.3 --depth 1 https://github.com/capstone-engine/capstone /opt/capstone
+    git clone https://github.com/capstone-engine/capstone /opt/capstone
     cd /opt/capstone
+    git checkout 0a67596
     make
     make install
 EOF
