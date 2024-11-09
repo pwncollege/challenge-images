@@ -96,6 +96,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         ethtool
         exiftool
         expect
+        figlet
         findutils
         finger
         firefox
@@ -153,6 +154,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         sqlite3
         strace
         tmux
+        toilet-fonts
         valgrind
         vim
         wamerican
