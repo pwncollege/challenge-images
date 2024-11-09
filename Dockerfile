@@ -141,12 +141,12 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         psutils
         python3-ipdb
         python3-magic
-        sagemath
         qemu-system-x86
         qemu-user
         qemu-utils
         racket
         rsync
+        sagemath
         screen
         silversearcher-ag
         socat
