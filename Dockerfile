@@ -316,7 +316,7 @@ EOF
 
 COPY desktop/binary-ninja.desktop /usr/share/applications/
 RUN <<EOF
-    wget -O /tmp/binaryninja_free_linux.zip https://cdn.binary.ninja/installers/binaryninja_free_linux.zip
+    wget -O /tmp/binaryninja_free_linux.zip https://web.archive.org/web/20240625203027/https://cdn.binary.ninja/installers/binaryninja_free_linux.zip
     unzip -d /opt /tmp/binaryninja_free_linux.zip
     wget -O /opt/binaryninja/icon.png  https://binary.ninja/icons/android-chrome-192x192.png
     rm /tmp/binaryninja_free_linux.zip
