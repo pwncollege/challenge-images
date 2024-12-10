@@ -329,7 +329,7 @@ EOF
 RUN xargs pip install --force-reinstall <<EOF
     angr
     asteval
-    dojjail>=0.1.6
+    dojjail>=0.1.7
     flask
     git+https://github.com/Gallopsled/pwntools#egg=pwntools
     git+https://github.com/secdev/scapy#egg=scapy
