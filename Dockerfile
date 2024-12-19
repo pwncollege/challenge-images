@@ -402,5 +402,10 @@ RUN <<EOF
     date > /opt/pwn.college/build
 EOF
 
+RUN <<EOF
+    wget -O /usr/bin/exec-suid http://github.com/pwncollege/exec-suid/releases/latest/download/exec-suid
+    chmod 6755 /usr/bin/exec-suid
+EOF
+
 USER hacker
 WORKDIR /home/hacker
