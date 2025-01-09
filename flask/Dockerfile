@@ -14,6 +14,8 @@ EOF
 
 COPY --chmod=755 <<EOF /challenge/.init
 #!/bin/sh
+export PYTHONDONTWRITEBYTECODE=1
+mkdir -p /var/log/gunicorn
 cd /challenge
 gunicorn --daemon
 EOF
