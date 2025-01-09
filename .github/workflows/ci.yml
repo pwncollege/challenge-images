@@ -34,13 +34,13 @@ jobs:
         id: check
         run: |
           if [ "${{ github.event.inputs.image }}" == "${{ matrix.image }}" ]; then
-            echo "update=true" >> $GITHUB_STATE
+            echo "update=true" >> $GITHUB_OUTPUT
             echo "Manually triggered build and push for ${{ matrix.image }}."
           elif git diff --quiet HEAD~1 -- "${{ matrix.image }}"; then
-            echo "update=false" >> $GITHUB_STATE
+            echo "update=false" >> $GITHUB_OUTPUT
             echo "No changes detected in ${{ matrix.image }}, skipping."
           else
-            echo "update=true" >> $GITHUB_STATE
+            echo "update=true" >> $GITHUB_OUTPUT
             echo "Changes detected in ${{ matrix.image }}, building and pushing."
           fi
 
