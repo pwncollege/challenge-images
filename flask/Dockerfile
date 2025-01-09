@@ -2,6 +2,18 @@
 
 FROM python:3.13-slim
 
-RUN pip install --no-cache-dir flask
+RUN pip install --no-cache-dir flask gunicorn
 
-ADD --chown=0:0 --chmod=6755 http://github.com/pwncollege/exec-suid/releases/latest/download/exec-suid /usr/bin/exec-suid
+COPY <<EOF /challenge/gunicorn.conf.py
+wsgi_app = 'wsgi:application'
+bind = "0.0.0.0:80"
+loglevel = "info"
+accesslog = "/var/log/gunicorn/access.log"
+errorlog = "/var/log/gunicorn/error.log"
+EOF
+
+COPY --chmod=755 <<EOF /challenge/.init
+#!/bin/sh
+pushd /challenge
+gunicorn --daemon
+EOF
