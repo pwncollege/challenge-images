@@ -402,9 +402,11 @@ RUN <<EOF
     date > /opt/pwn.college/build
 EOF
 
+ADD --chown=0:0 --chmod=6755 http://github.com/pwncollege/exec-suid/releases/latest/download/exec-suid /usr/bin/exec-suid
+
 RUN <<EOF
-    wget -O /usr/bin/exec-suid http://github.com/pwncollege/exec-suid/releases/latest/download/exec-suid
-    chmod 6755 /usr/bin/exec-suid
+    ln -sf /usr/bin/python /usr/local/bin/python
+    ln -sf /usr/bin/python3 /usr/local/bin/python3
 EOF
 
 USER hacker
