@@ -12,6 +12,7 @@ on:
         options:
           - simple
           - flask
+          - lecture
           - legacy
 
 jobs:
@@ -22,6 +23,7 @@ jobs:
         image:
           - simple
           - flask
+          - lecture
           - legacy
 
     steps:
