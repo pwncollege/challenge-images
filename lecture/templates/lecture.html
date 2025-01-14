@@ -156,6 +156,9 @@
             })
             .then(response => response.json())
             .then(data => {
+                if (data.error && data.error === "Incorrect video") {
+                    window.location.href = "..";
+                }
                 const progressContainer = document.getElementById("progress-container");
                 progressContainer.innerHTML = "";
                 const coverages = [

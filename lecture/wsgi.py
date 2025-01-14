@@ -13,15 +13,15 @@ app = Flask(__name__)
 
 flag = open("/flag").read().strip()
 
-youtube_id, total_time = open("/challenge/.config").read().strip().split()
-total_time = int(total_time)
+YOUTUBE_ID, TOTAL_TIME = open("/challenge/.config").read().strip().split()
+TOTAL_TIME = int(TOTAL_TIME)
 
 
 def open_timeline_file():
     local_share_dir = Path("/home/hacker/.local/share/")
     local_share_dir.mkdir(parents=True, exist_ok=True)
     os.chown(local_share_dir, 1000, 1000)
-    timeline_path = local_share_dir / "lectures" / f"{youtube_id}.gz"
+    timeline_path = local_share_dir / "lectures" / f"{YOUTUBE_ID}.gz"
     timeline_path.parent.mkdir(parents=True, exist_ok=True)
     existing_data = []
     try:
@@ -42,7 +42,7 @@ timeline_file = open_timeline_file()
 
 @app.route("/")
 def index():
-    return redirect(f"{youtube_id}/")
+    return redirect(f"{YOUTUBE_ID}/")
 
 
 @app.route("/<youtube_id>/")
@@ -52,6 +52,9 @@ def lecture(youtube_id):
 
 @app.route("/<youtube_id>/telemetry", methods=["GET", "POST"])
 def update_telemetry(youtube_id):
+    if youtube_id != YOUTUBE_ID:
+        return {"error": "Incorrect video"}, 400
+
     fields = {
         "reason": str,
         "player": ["state", "time", "muted", "volume", "rate", "loaded", "duration", "url"],
@@ -76,7 +79,7 @@ def update_telemetry(youtube_id):
     valid_coverage, invalid_coverage = resolve_timeline_coverage(timeline)
     result["coverage"] = {"valid": valid_coverage, "invalid": invalid_coverage}
 
-    completed = sum(end - start for start, end in valid_coverage) > total_time - 5
+    completed = sum(end - start for start, end in valid_coverage) > TOTAL_TIME - 5
     if completed:
         result["flag"] = flag
 
