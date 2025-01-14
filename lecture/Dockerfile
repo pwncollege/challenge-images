@@ -4,7 +4,8 @@ FROM python:3.13-slim
 
 RUN pip install --no-cache-dir flask gunicorn
 
-ADD wsgi.py templates /opt/lecture/
+ADD wsgi.py /opt/lecture/
+ADD templates/ /opt/lecture/templates/
 
 COPY <<EOF /opt/lecture/gunicorn.conf.py
 wsgi_app = 'wsgi:application'
