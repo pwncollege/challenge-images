@@ -329,9 +329,10 @@ EOF
 RUN xargs pip install --force-reinstall <<EOF
     angr
     asteval
-    dojjail>=0.1.7
+    fastecdsa
     flask
     git+https://github.com/Gallopsled/pwntools#egg=pwntools
+    git+https://github.com/pwncollege/dojjail#egg=dojjail
     git+https://github.com/secdev/scapy#egg=scapy
     jupyter
     psutil
@@ -339,7 +340,6 @@ RUN xargs pip install --force-reinstall <<EOF
     r2pipe
     requests
     selenium
-    fastecdsa
 EOF
 
 RUN ln -sf /usr/bin/ipython3 /usr/bin/ipython
