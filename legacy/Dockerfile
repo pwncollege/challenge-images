@@ -303,27 +303,6 @@ EOF
 
 ################################################################################
 
-# angr management
-
-COPY desktop/angr-management.desktop /usr/share/applications/
-RUN <<EOF
-    wget -q -O - https://github.com/angr/angr-management/releases/download/nightly/angr-management-ubuntu-20.04.tar.gz | tar xvz -C /opt
-EOF
-
-################################################################################
-
-# binja
-
-COPY desktop/binary-ninja.desktop /usr/share/applications/
-RUN <<EOF
-    wget -O /tmp/binaryninja_free_linux.zip https://web.archive.org/web/20240625203027/https://cdn.binary.ninja/installers/binaryninja_free_linux.zip
-    unzip -d /opt /tmp/binaryninja_free_linux.zip
-    wget -O /opt/binaryninja/icon.png  https://binary.ninja/icons/android-chrome-192x192.png
-    rm /tmp/binaryninja_free_linux.zip
-EOF
-
-################################################################################
-
 # python pip
 
 RUN xargs pip install --force-reinstall <<EOF
