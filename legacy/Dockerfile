@@ -336,11 +336,14 @@ COPY .gdbinit /opt/pwn.college/.gdbinit
 COPY .radare2rc /opt/pwn.college/.radare2rc
 COPY .pwn.conf /opt/pwn.college/.pwn.conf
 
-RUN <<EOF
-    ln -sf /run/dojo/bin/python-suid /opt/pwn.college/python
-    ln -sf /run/dojo/bin/bash-suid /opt/pwn.college/bash
-    ln -sf /run/dojo/bin/sh-suid /opt/pwn.college/sh
+COPY suid_interpreter.c /tmp/suid_interpreter.c
+RUN gcc -o /opt/pwn.college/python -D SUID_PYTHON /tmp/suid_interpreter.c && \
+    gcc -o /opt/pwn.college/bash -D SUID_BASH /tmp/suid_interpreter.c && \
+    gcc -o /opt/pwn.college/sh -D SUID_SH /tmp/suid_interpreter.c && \
+    rm -f /tmp/suid_interpreter.c && \
+    chmod 4755 /opt/pwn.college/python /opt/pwn.college/bash /opt/pwn.college/sh
 
+RUN <<EOF
     ln -sf /opt/pwn.college/vm/vm /usr/local/bin/vm
 
     ln -sf /home/hacker/.tmux.conf /root/.tmux.conf
