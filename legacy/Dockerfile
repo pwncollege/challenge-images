@@ -340,8 +340,7 @@ COPY suid_interpreter.c /tmp/suid_interpreter.c
 RUN gcc -o /opt/pwn.college/python -D SUID_PYTHON /tmp/suid_interpreter.c && \
     gcc -o /opt/pwn.college/bash -D SUID_BASH /tmp/suid_interpreter.c && \
     gcc -o /opt/pwn.college/sh -D SUID_SH /tmp/suid_interpreter.c && \
-    rm -f /tmp/suid_interpreter.c && \
-    chmod 4755 /opt/pwn.college/python /opt/pwn.college/bash /opt/pwn.college/sh
+    rm -f /tmp/suid_interpreter.c
 
 RUN <<EOF
     ln -sf /opt/pwn.college/vm/vm /usr/local/bin/vm
@@ -379,6 +378,9 @@ RUN <<EOF
 
     find / -xdev -type f -perm -4000 -exec chmod u-s {} \;
 
+    chmod u+s /opt/pwn.college/python
+    chmod u+s /opt/pwn.college/bash
+    chmod u+s /opt/pwn.college/sh
     chmod u+s /opt/pwn.college/vm/vm
 
     date > /opt/pwn.college/build
