@@ -1,8 +1,7 @@
-#!/opt/pwn.college/python
+#!/usr/bin/exec-suid -- /usr/bin/python3 -I
 
 import argparse
 import ctypes
-import grp
 import os
 import shutil
 import socket
@@ -91,12 +90,19 @@ def execve(argv):
 
 
 def start():
-    flags = " ".join(flag for flag in extra_boot_flags())
-
     bzImage = "/challenge/bzImage" if os.path.exists("/challenge/bzImage") else "/opt/linux/bzImage"
-
     kvm = os.path.exists("/dev/kvm")
     cpu = "host" if kvm else "qemu64"
+    append = " ".join([
+        "rw",
+        "rootfstype=9p",
+        "rootflags=trans=virtio",
+        "console=ttyS0",
+        "init=/opt/pwn.college/vm/init",
+        *extra_boot_flags(),
+        f"PATH={os.environ['PATH']}",  # PATH is safe (exec-suid)
+    ])
+
     qemu_argv = [
         "/usr/bin/qemu-system-x86_64",
         "-kernel", bzImage,
@@ -111,8 +117,9 @@ def start():
         "-smp", "2" if kvm else "1",
         "-nographic",
         "-monitor", "none",
-        "-append", f"rw rootfstype=9p rootflags=trans=virtio console=ttyS0 init=/opt/pwn.college/vm/init {flags}",
+        "-append", append,
     ]
+
     if kvm:
         qemu_argv.append("-enable-kvm")
 
