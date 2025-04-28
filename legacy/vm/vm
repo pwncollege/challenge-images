@@ -204,7 +204,7 @@ def debug():
     vmlinux = "/challenge/vmlinux" if os.path.exists("/challenge/vmlinux") else "/opt/linux/vmlinux"
 
     execve([
-        "/usr/bin/gdb",
+        "/run/workspace/bin/gdb",
         "--ex", "target remote localhost:1234",
         vmlinux,
     ])
