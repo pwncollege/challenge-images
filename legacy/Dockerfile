@@ -126,7 +126,6 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         libc6-dev-arm64-cross
         ltrace
         mysql-server
-        nano
         neovim
         net-tools
         netcat-openbsd
