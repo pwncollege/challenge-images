@@ -26,5 +26,5 @@ export PYTHONDONTWRITEBYTECODE=1
 mkdir -p /var/log/gunicorn
 cd /opt/lecture
 gunicorn --daemon
-until curl -fs localhost:8080 >/dev/null; do sleep 0.1; done
+until curl -fs localhost:80 >/dev/null; do sleep 0.1; done
 EOF
