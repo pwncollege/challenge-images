@@ -2,6 +2,11 @@
 
 FROM python:3.13-slim
 
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        curl && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN pip install --no-cache-dir flask gunicorn
 
 ADD wsgi.py /opt/lecture/
@@ -21,4 +26,5 @@ export PYTHONDONTWRITEBYTECODE=1
 mkdir -p /var/log/gunicorn
 cd /opt/lecture
 gunicorn --daemon
+until curl -fs localhost:8080 >/dev/null; do sleep 0.1; done
 EOF
