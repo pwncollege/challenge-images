@@ -158,7 +158,6 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         vim
         wamerican
         whiptail
-        wireshark
         zip
         zsh
 EOF
