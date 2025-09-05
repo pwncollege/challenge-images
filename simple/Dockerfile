@@ -1,5 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM python:3.13-slim
+FROM ubuntu:24.04
+RUN apt-get update && apt-get install -y python3 python3-requests python3-flask && apt-get clean
 
 ADD --chown=0:0 --chmod=6755 http://github.com/pwncollege/exec-suid/releases/latest/download/exec-suid /usr/bin/exec-suid
