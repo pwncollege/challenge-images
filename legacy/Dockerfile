@@ -38,7 +38,6 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         autoconf
         bc
         bison
-        cargo
         clang
         cmake
         cpio
@@ -163,6 +162,17 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 EOF
 
 RUN rm -f /usr/lib/python3.*/EXTERNALLY-MANAGED
+
+################################################################################
+
+# Install Rust via rustup
+
+RUN <<EOF
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
+    source "$HOME/.cargo/env"
+EOF
+
+ENV PATH="/root/.cargo/bin:${PATH}"
 
 ################################################################################
 
