@@ -10,6 +10,7 @@ RUN apt-get update && \
 RUN pip install --no-cache-dir flask gunicorn
 
 ADD wsgi.py /opt/lecture/
+ADD static/ /opt/lecture/static/
 ADD templates/ /opt/lecture/templates/
 
 COPY <<EOF /opt/lecture/gunicorn.conf.py

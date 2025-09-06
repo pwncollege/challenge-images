@@ -1,0 +1,79 @@
+:root {
+    --progress-bar-height: 20px;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+#player-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid grey;
+    box-sizing: border-box;
+}
+#progress-container {
+    width: 100%;
+    height: var(--progress-bar-height);
+    background-color: grey;
+}
+.progress-bar {
+    position: absolute;
+    height: var(--progress-bar-height);
+    opacity: 0.5;
+}
+.progress-bar.invalid-coverage {
+    background-color: #f44336;
+}
+.progress-bar.valid-coverage {
+    background-color: #4caf50;
+}
+.modal {
+    color: white;
+    background-color: #333;
+    font-family: monospace;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.modal-field {
+    padding: 10px;
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+.modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+}
+.modal-close:hover {
+    cursor: pointer;
+}
+.modal-close:focus {
+    outline: none;
+}
+.field-copy {
+    padding: 10px;
+    margin-left: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+.field-copy:hover {
+    cursor: pointer;
+    background-color: #ccc;
+}
+.field-copy:active {
+    background-color: lightblue;
+}
