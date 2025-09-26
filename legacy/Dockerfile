@@ -224,7 +224,7 @@ EOF
 
 RUN <<EOF
     cd /opt/linux/linux-5.4
-    make -j$(nproc) bzImage
+    make -j$(nproc) bzImage scripts_gdb
     ln -sf $PWD/arch/x86/boot/bzImage ../bzImage
     ln -sf $PWD/vmlinux ../vmlinux
 EOF
