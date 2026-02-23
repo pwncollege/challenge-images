@@ -318,11 +318,11 @@ RUN xargs pip install --force-reinstall <<EOF
     asteval
     fastecdsa
     flask
-    git+https://github.com/Gallopsled/pwntools#egg=pwntools
     git+https://github.com/pwncollege/dojjail#egg=dojjail
     git+https://github.com/secdev/scapy#egg=scapy
     jupyter
     psutil
+    pwntools
     pycryptodome
     r2pipe
     requests
