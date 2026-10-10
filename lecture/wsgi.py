@@ -95,13 +95,16 @@ def resolve_timeline_coverage(timeline):
 
     last_time = timeline[0]["player"]["time"]
     last_timestamp = timeline[0]["timestamp"]
+    grace = 10.0
 
     for event in timeline[1:]:
         elapsed_time = event["player"]["time"] - last_time
         elapsed_timestamp = event["timestamp"] - last_timestamp
 
-        if elapsed_timestamp * 2 + 2 > elapsed_time > 0:
+        allowed_time = elapsed_timestamp * 2.1 + grace
+        if 0 < elapsed_time <= allowed_time:
             valid_coverage.append((last_time, event["player"]["time"]))
+            grace = min(10.0, allowed_time - elapsed_time)
         elif elapsed_time > 0:
             invalid_coverage.append((last_time, event["player"]["time"]))
 
